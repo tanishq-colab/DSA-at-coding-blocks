@@ -1,0 +1,1 @@
+cout<<bitset<32>(n)<<endl;
