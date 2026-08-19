@@ -25,6 +25,18 @@ void print(listnode*head){
     }
 }
 
+void reve(listnode*& head){
+    listnode* curr = head;
+    litnode* prev = NULL;
+    while(curr != NULL){
+        listnode* temp = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = temp;
+    }
+    head = temp;
+}
+
 listnode* reverse(listnode* head){
 
     listnode * prev = NULL;

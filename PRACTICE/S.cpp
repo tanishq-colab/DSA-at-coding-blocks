@@ -1,82 +1,82 @@
-// // // // #include <iostream>
-// // // // using namespace std;
-// // // // #include <vector>
-// // // // #define l endl
-// // // // #include<iomanip>
-// // // // #include<algorithm>
+// #include <iostream>
+// using namespace std;
+// #include <vector>
+// #define l endl
+// #include<iomanip>
+// #include<algorithm>
 
-// // // // int good(string str , int n)
-// // // // {
-// // // //     int z = 0;
-// // // //     int maxo = 0;
-// // // //     for(int i = 0 ; i < n;i++)
-// // // //     {
-// // // //         for(int j = i; j < n ; j++){
+// int good(string str , int n)
+// {
+//     int z = 0;
+//     int maxo = 0;
+//     for(int i = 0 ; i < n;i++)
+//     {
+//         for(int j = i; j < n ; j++){
           
-// // // //             string rev = str.substr(i,j-i+1);
-// // // //             string temp = rev;
-// // // //             reverse(rev.begin(),rev.end());
-// // // //             if(temp == rev)
-// // // //             {
-// // // //                 z++;
-// // // //             }
-// // // //         }       
-// // // // }
-// // // // return z;
-// // // // }
-// // // // int main(){
-// // // //     string str = "abaaba"; 
-// // // //     int n = str.size();
-// // // //   cout<< good(str,n) ;
+//             string rev = str.substr(i,j-i+1);
+//             string temp = rev;
+//             reverse(rev.begin(),rev.end());
+//             if(temp == rev)
+//             {
+//                 z++;
+//             }
+//         }       
+// }
+// return z;
+// }
+// int main(){
+//     string str = "abaaba"; 
+//     int n = str.size();
+//   cout<< good(str,n) ;
 
-// // // //     return 0;
-// // // // }
+//     return 0;
+// }
 
-// // #include <iostream>
-// // using namespace std;
-// // #include <vector>
+// #include <iostream>
+// using namespace std;
+// #include <vector>
 
-// // int dx[] = {1,0,-1,0};
-// // int dy[] = {0,1,0,-1};
+// int dx[] = {1,0,-1,0};
+// int dy[] = {0,1,0,-1};
 
 
-// // void pathh(char maze[][10],char path[][10],int m,int n,int i, int j){
+// void pathh(char maze[][10],char path[][10],int m,int n,int i, int j){
 
-// //   if(i == m || j == m || i == -1 || j == -1){
-// //     return;
-// //   }
-// //   if(maze[i][j] == 'X'){
-// //     return;
-// //   }
-// //   if(path[i][j] == '1') return;
+//   if(i == m || j == m || i == -1 || j == -1){
+//     return;
+//   }
+//   if(maze[i][j] == 'X'){
+//     return;
+//   }
+//   if(path[i][j] == '1') return;
 
-// //   if( i == m-1 && j == n-1){
-// //     path[i][j] = '1';
-// //     for(int i = 0 ; i < m ; i++){
-// //       for(int j = 0 ; j < n ; j++){
-// //         cout<<path[i][j]<<' ';
-// //       }
-// //       cout<<endl;
-// //     }
-// //     return;
-// //   }
+//   if( i == m-1 && j == n-1){
+//     path[i][j] = '1';
+//     for(int i = 0 ; i < m ; i++){
+//       for(int j = 0 ; j < n ; j++){
+//         cout<<path[i][j]<<' ';
+//       }
+//       cout<<endl;
+//     }
+//     return;
+//   }
 
-// //   path[i][j] = '1';
-// //   // pathh(maze,path,m,n,i+1,j);
-// //   // pathh(maze, path, m, n , i , j + 1 );
-// //   // pathh(maze, path , m, n, i-1 , j);
-// //   // pathh(maze, path, m, n ,i , j-1);
-// //   for(int ii = 0 ; ii < 4 ;ii++){
-// //     pathh(maze,path,m,n,i + dx[ii],j + dy[ii]);
-// //   }
+//   path[i][j] = '1';
+//   // pathh(maze,path,m,n,i+1,j);
+//   // pathh(maze, path, m, n , i , j + 1 );
+//   // pathh(maze, path , m, n, i-1 , j);
+//   // pathh(maze, path, m, n ,i , j-1);
+//   for(int ii = 0 ; ii < 4 ;ii++){
+//     pathh(maze,path,m,n,i + dx[ii],j + dy[ii]);
+//   }
 
-// // path[i][j] = '0';
+// path[i][j] = '0';
 
-// // }
+// }
 
-// // int main(){
+// // // int main(){
   
-// // 	char maze[][10] = {
+// // // 	char maze[][10] = {
 // // 		"0X00",
 // // 		"0X0X", 
 // // 		"0000",
@@ -155,29 +155,178 @@
 //     return 0;
 // }
 
+// #include <iostream>
+// using namespace std;
+// #include <vector>
+
+// void f(string ip,int i){
+
+  
+//     if(ip[i] == '\0'){
+//         cout<<ip<<' ';
+//         return;
+//     }
+
+//     if(ip[i] == '?'){
+//         ip[i] = '0';
+//         f(ip,i+1);
+//         ip[i] = '1';
+//         f(ip,i+1);
+//     }
+//   else f(ip,i+1);
+  
+// }
+
+// int main(){
+//     int t;
+//     cin>>t;
+//     while(t--){
+//     string s;
+//     cin>>s;
+// 	 f(s,0);
+// 	 }
+   
+//     return 0;
+// }
+
+// #include <iostream>
+// using namespace std;
+// #include <vector>
+
+// class listnode{
+//     public:
+//     int val;
+//     listnode* next;
+//     listnode(int val){
+//         this->val=val;
+//         this->next = NULL;
+//     }
+// };
+// int cnt=0;
+// void insert(listnode* &head,int val){
+//     listnode* n = new listnode(val);
+    
+//     n->next = head;
+//     head = n;
+// }
+
+// void del(listnode*& head){
+//     listnode* temp = head;
+//     head = head->next;
+//     delete temp;
+// }
+
+// void p(listnode* head){
+
+// while(head!= NULL){
+//     cout<< head->val<<' ';
+//     head = head->next;
+//     cnt++;
+// }}
+// int len(listnode* head){
+//     if(head == NULL){return 0;}
+//     return 1 + len(head->next);
+// }
+
+// void reve(listnode*& head){
+//     listnode* prev = NULL;
+//      listnode *curr = head;
+//      while(curr != NULL){
+//         listnode* temp = curr->next;
+//         curr->next = prev;
+//         prev = curr;
+//         curr = temp;
+//      }
+//      head = prev;
+// }
+// listnode* getta(listnode*head){
+//     while(head->next != NULL){
+//         head = head-> next;
+//     }
+//     return head;
+// }
+
+// void tail(listnode* head,int value){
+//    listnode* n = new listnode(value);
+//    listnode *tail = getta(head);
+//    tail->next = n;
+// }
+
+// void delele(listnode* head){
+//     listnode*prev = NULL;
+//     listnode* curr= head;
+//     while(curr-> next != NULL){
+//         prev = curr;
+//         curr = curr->next;
+//     }
+//     prev->next= NULL;
+//     delete curr;
+// }
+
+// int main(){
+
+//    listnode* head = NULL;
+
+//     insert(head,50);
+//     insert(head,40);
+//     insert(head,30);
+//     insert(head,20);
+//     insert(head,10);
+//     p(head);
+//     cout<<endl;
+//     // reve(head);
+//     tail(head,60);
+//     p(head);
+// cout<<endl;
+//     delele(head);
+//     p(head);
+//     return 0;
+// }
+
+
+
+
+// you are given a string S and an integer K you have to fing longest substring
+// such that it has atmost k distinct letters and have an odd frequency
+
 #include <iostream>
+#include <string>
 using namespace std;
-#include <vector>
-#include<cstring>
-int dp[100][100][100];
 
-int wine(int*a,int n,int i,int j,int y){
-    if(dp[i][j][y] != -1){
-        return dp[i][j][y];
-    }
-    if(i == j){
-        return dp[i][j][y] =  y * a[i];
-    }
- 
-    return dp[i][j][y] = max(a[i] * y + wine(a,n,i+1,j,y+1), a[j] * y + wine(a,n,i,j-1,y+1));
 
+int countAscii(string str, int i) {
+    // Base case
+    if (i == str.length()) {
+        return 1;
+    }
+
+    
+    return countAscii(str, i + 1) + countAscii(str, i + 1)  + countAscii(str, i + 1);
 }
 
-int main(){
-    int a[] = {2, 3 , 5 , 1 , 4 };
-    int n = sizeof(a)/sizeof(int);
-    memset(dp,-1,sizeof(dp));
-    cout<<wine(a,n,0,n-1,1);
+void printAscii(string str, int i, string ans) {
+    // Base case
+    if (i == str.length()) {
+        cout << ans << " ";
+        return;
+    }
+
+    printAscii(str, i + 1, ans);
+
+
+    printAscii(str, i + 1, ans + str[i]);
+
+    printAscii(str, i + 1, ans + to_string((int)str[i]));
+}
+
+int main() {
+    string str;
+    cin >> str;
+
+    printAscii(str, 0, "");
+    cout << endl;
+
+    cout << countAscii(str, 0) << endl;
 
     return 0;
 }

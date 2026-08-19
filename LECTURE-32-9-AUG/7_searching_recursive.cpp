@@ -1,63 +1,97 @@
-#include <iostream>
+#include<iostream>
+
 using namespace std;
-#include <vector>
 
-class listnode{
-    public:
-    int val;
-    listnode* next;
-    listnode(int val){
-        this->val = val;
-        this-> next = next;
-    }
+class ListNode {
+
+public :
+
+	int val;
+	ListNode* next;
+
+	ListNode(int val) {
+		this->val = val;
+		this->next = NULL;
+	}
+
 };
-void insert(listnode*& headptr , int val){
-    listnode * n = new listnode(val);
-    n->next = headptr;
-    headptr= n;
+
+
+void insertAtHead(ListNode*& head, int val) {
+
+	ListNode* n = new ListNode(val);
+	n->next = head;
+	head = n;
+
 }
 
-void print(listnode*head){
-    while(head != NULL){
-        cout<<head->val<<' ';
-        head = head->next;
-       
-    }
+void printLinkedList(ListNode* head) {
+
+	while (head != NULL) {
+		cout << head->val << " ";
+		head = head->next;
+	}
+
+	cout << endl;
 }
 
-bool ispresent(listnode* head,int t){
-    while(head != NULL){
-        if(head->val == t) return true;
-        else (head = head->next);
-    }
-    return false;
+// time : O(n)
+
+bool searchIterative(ListNode* head, int target) {
+	while (head != NULL) {
+		if (head->val == target) {
+			return true;
+		}
+		head = head->next;
+	}
+
+	return false;
 }
 
-bool searchrecursive(listnode* head,int target){
-    if(head == NULL){
-        return false;
-    }
-    if(head->val == target){
-        return true;
-    }
-    
+// time : O(n)
+// space: O(n) due to fn call stack
+
+bool searchRecursive(ListNode* head, int target) {
+
+	// base case
+	if (head == NULL) {
+		// f(NULL, target) : check if the target is present in an empty linkedList
+		return false;
+	}
+
+	// recursive case
+
+	// f(head, target) : check if the target is present in the given linkedList
+
+	if (head->val == target) {
+		return true;
+	}
+
+	// ask your friend to check if the target is present
+	// in the sublist that starts from the node which
+	// comes after the head node
+
+	return searchRecursive(head->next, target);
+
 }
 
+int main() {
 
-int main(){
-    listnode* head = NULL;
+	ListNode* head = NULL; // initially, linkedList is empty
 
-    insert(head,10);
-    insert(head,20);
-    insert(head,30);
-    insert(head,40);
-    insert(head,50);
-    print(head);
-    cout<<endl;
-  //  cout<<lengthrecursive(head);
-  //  cout<<endl;
+	insertAtHead(head, 50);
+	insertAtHead(head, 40);
+	insertAtHead(head, 30);
+	insertAtHead(head, 20);
+	insertAtHead(head, 10);
 
-    ispresent(head,55) ? cout<<"present" : cout<<"not";
-    
-    return 0;
+	printLinkedList(head);
+
+	int target = 50;
+
+	searchIterative(head, target) ? cout << target <<  " found" << endl : cout << target << " not found" << endl;
+
+	searchRecursive(head, target) ? cout << target << " found" << endl : cout << target << " not found" << endl;
+
+	return 0;
 }

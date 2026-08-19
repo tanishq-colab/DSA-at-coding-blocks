@@ -1,52 +1,102 @@
-#include <iostream>
+#include<iostream>
+
 using namespace std;
-#include <vector>
 
-class listnode{
-    public:
-    int val;
-    listnode* next;
-    listnode(int val){
-        this->val = val;
-        this-> next = next;
-    }
+class ListNode {
+
+public :
+
+	int val;
+	ListNode* next;
+
+	ListNode(int val) {
+		this->val = val;
+		this->next = NULL;
+	}
+
 };
-void insert(listnode*& headptr , int val){
-    listnode * n = new listnode(val);
-    n->next = headptr;
-    headptr= n;
+
+
+void insertAtHead(ListNode*& head, int val) {
+
+	ListNode* n = new ListNode(val);
+	n->next = head;
+	head = n;
+
 }
 
-void print(listnode*head){
-    while(head != NULL){
-        cout<<head->val<<' ';
-        head = head->next;
-       
-    }
+void printLinkedList(ListNode* head) {
+
+	while (head != NULL) {
+		cout << head->val << " ";
+		head = head->next;
+	}
+
+	cout << endl;
 }
 
-int lengthrecursive(listnode* head){
-    if(head == NULL){
-        return 0;
-    }
-    int x = lengthrecursive(head->next);
-    return 1+ x;
+void deleteAtHead(ListNode*& head) {
+
+	if (!head) { // head == NULL
+		// linkedList is empty
+		return;
+	}
+
+	ListNode* temp = head;
+	head = head->next;
+	delete temp;
 }
 
-void delete tail
+// time : O(n)
+// space: O(1)
 
+void deleteAtTail(ListNode*& head) {
 
-int main(){
-    listnode* head = NULL;
+	if (head == NULL) {
+		// linkedList is empty
+		return;
+	}
 
-    insert(head,10);
-    insert(head,20);
-    insert(head,30);
-    insert(head,40);
-    insert(head,50);
-    print(head);
-    cout<<endl;
-    cout<<lengthrecursive(head);
-   
-    return 0;
+	// linkedList is non-empty
+
+	if (head->next == NULL) {
+		// linkedList has 1 node
+		deleteAtHead(head);
+		return;
+	}
+
+	ListNode* prev = NULL;
+	ListNode* cur = head;
+
+	while (cur->next != NULL) {
+		prev = cur;
+		cur = cur->next;
+	}
+
+	// prev is pointing to second last node
+
+	// and cur is pointing to last node i.e. tail node
+
+	prev->next = NULL;
+	delete cur;
+
+}
+
+int main() {
+
+	ListNode* head = NULL; // linked list is initially empty
+
+	insertAtHead(head, 50);
+	insertAtHead(head, 40);
+	insertAtHead(head, 30);
+	insertAtHead(head, 20);
+	insertAtHead(head, 10);
+
+	printLinkedList(head); // 10 20 30 40 50
+
+	deleteAtTail(head);
+
+	printLinkedList(head); // 10 20 30 40
+
+	return 0;
 }
