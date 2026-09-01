@@ -286,47 +286,144 @@
 
 
 
-// you are given a string S and an integer K you have to fing longest substring
-// such that it has atmost k distinct letters and have an odd frequency
+// // you are given a string S and an integer K you have to fing longest substring
+// // such that it has atmost k distinct letters and have an odd frequency
 
-#include <iostream>
-#include <string>
-using namespace std;
+// #include <iostream>
+// #include <string>
+// using namespace std;
 
 
-int countAscii(string str, int i) {
-    // Base case
-    if (i == str.length()) {
-        return 1;
-    }
+// int countAscii(string str, int i) {
+//     // Base case
+//     if (i == str.length()) {
+//         return 1;
+//     }
 
     
-    return countAscii(str, i + 1) + countAscii(str, i + 1)  + countAscii(str, i + 1);
-}
+//     return countAscii(str, i + 1) + countAscii(str, i + 1)  + countAscii(str, i + 1);
+// }
 
-void printAscii(string str, int i, string ans) {
-    // Base case
-    if (i == str.length()) {
-        cout << ans << " ";
-        return;
+// void printAscii(string str, int i, string ans) {
+//     // Base case
+//     if (i == str.length()) {
+//         cout << ans << " ";
+//         return;
+//     }
+
+//     printAscii(str, i + 1, ans);
+
+
+//     printAscii(str, i + 1, ans + str[i]);
+
+//     printAscii(str, i + 1, ans + to_string((int)str[i]));
+// }
+
+// int main() {
+//     string str;
+//     cin >> str;
+
+//     printAscii(str, 0, "");
+//     cout << endl;
+
+//     cout << countAscii(str, 0) << endl;
+
+//     return 0;
+// }
+
+// #include <iostream>
+// using namespace std;
+// #include <vector>
+// #include<stack>
+
+// int main(){
+//     stack<int> s;
+//     s.push(10);
+//     s.push(20);
+//     s.push(30);
+//     s.push(40);
+//     cout << "size : " << s.size() << endl;
+// 	cout << "top : " << s.top() << endl;
+
+//     s.pop();
+//     cout << "size : " << s.size() << endl;
+// 	cout << "top : " << s.top() << endl;
+
+//     return 0;
+// }
+
+// #include <iostream>
+// using namespace std;
+// #include <vector>
+// #include<stack>
+
+// bool fun(string r,stack<char> s){
+
+//     for(char &x : r){
+//         if(x == '(' ||x == '{' ||x == '['  ){
+//             s.push(x);
+//         }
+//       else if( x == ')' &&!s.empty()  && s.top() == '(') 
+//          {
+//             s.pop();
+//          }
+         
+//      else if( x == '}' &&!s.empty() && s.top() == '{') 
+//          {
+//             s.pop() ;
+            
+//         }
+//      else if ( x == ']' && !s.empty() && s.top() == '[') {
+//             s.pop();
+//         }
+//         else {
+//             return false;
+//         }
+//     }
+//     return s.empty();
+
+
+// }
+
+// int main(){
+//     string r = "(((";
+//     stack<char> s;
+
+//     fun(r,s) ? cout<<"true" : cout<<"false";
+//         return 0;
+// }
+#include<algorithm> 
+#include <iostream>
+using namespace std;
+#include <vector>
+#include<stack>
+
+vector<int> ans(vector<int>& v){
+    stack<int> s;
+    int n = v.size();
+    vector<int> aa;
+    for(int i = n-1 ; i>=0;i--){
+        while(!s.empty() and v[s.top()] >=v[i]){
+            s.pop();
+        }
+        if(s.empty()){
+            aa.push_back(n);
+        }
+        else {
+            aa.push_back(s.top());
+        }
+s.push(i);
     }
-
-    printAscii(str, i + 1, ans);
-
-
-    printAscii(str, i + 1, ans + str[i]);
-
-    printAscii(str, i + 1, ans + to_string((int)str[i]));
+    reverse(aa.begin(),aa.end());
+    return aa;
 }
 
-int main() {
-    string str;
-    cin >> str;
+int main(){
 
-    printAscii(str, 0, "");
-    cout << endl;
-
-    cout << countAscii(str, 0) << endl;
-
+    vector<int> v = {2, 5, 1, 3, 6, 4, 0};
+  vector<int> p =  ans(v);
+  for(int i = 0; i < p.size() ;i++){
+    cout<<p[i] << ' ';
+  }
     return 0;
 }
