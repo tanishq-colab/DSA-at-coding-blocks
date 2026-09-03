@@ -398,32 +398,59 @@ using namespace std;
 #include <vector>
 #include<stack>
 
-vector<int> ans(vector<int>& v){
+vector<int> nsl(vector <int> v){
     stack<int> s;
-    int n = v.size();
-    vector<int> aa;
-    for(int i = n-1 ; i>=0;i--){
-        while(!s.empty() and v[s.top()] >=v[i]){
+    vector<int> ans;
+    for(int i=0;i<v.size();i++){
+        while(!s.empty() and v[s.top()] >= v[i]){
             s.pop();
         }
         if(s.empty()){
-            aa.push_back(n);
+            ans.push_back(-1);
         }
         else {
-            aa.push_back(s.top());
+            ans.push_back(s.top());
         }
-s.push(i);
+        s.push(i);
     }
-    reverse(aa.begin(),aa.end());
-    return aa;
+    return ans;
+}
+
+vector<int> nsr(vector<int> v){
+    stack <int> s;
+    vector<int> ans;
+    for(int i=v.size()-1;i>=0;i--){
+        while(!s.empty() and v[s.top()] >=v[i] ){
+            s.pop();
+        }
+        if(s.empty()){
+            ans.push_back(-1);
+        }
+        else{
+            ans.push_back(s.top());
+        }
+        s.push(i);
+    }
+    reverse(ans.begin(),ans.end());
+    return ans;
 }
 
 int main(){
 
-    vector<int> v = {2, 5, 1, 3, 6, 4, 0};
-  vector<int> p =  ans(v);
-  for(int i = 0; i < p.size() ;i++){
-    cout<<p[i] << ' ';
-  }
+    vector<int> v ={2,1,5,6,2,3};
+    vector<int> nl = nsl(v);
+    vector<int> nr = nsr(v);
+
+    
+    for (int i = 0; i <nl.size(); i++)
+    {
+        cout<<nl[i]<<' ';
+    }
+    cout<<endl;
+    for (int i = 0; i <nr.size(); i++)
+    {
+        cout<<nr[i]<<' ';
+    }
+
     return 0;
 }
